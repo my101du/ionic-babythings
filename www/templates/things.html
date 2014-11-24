@@ -1,0 +1,53 @@
+<ion-view title="{{categoryWithIndex.category.title}}">
+
+<ion-nav-buttons side="right">
+    <a class="button button-clear" ng-click="addThing({{categoryWithIndex.category.id}})"> 添加 </a>
+</ion-nav-buttons>
+
+<!-- 不分类 -->
+<!-- <div class="tabs-striped tabs-top tabs-background-positive tabs-light">
+	<div class="tabs">
+		<a class="tab-item active" href="#"> 使用中 </a>
+		<a class="tab-item" href="#"> 闲置 </a>
+	</div>
+</div> -->
+
+<ion-content>
+
+	<!-- 避免被顶部tab挡住 -->
+	<!-- <div class="padding-top" style="padding-top:50px;"></div> -->
+
+	<!-- <ion-list ng-repeat="groupWithThings in groupedThings">
+		<div class="item item-divider ">{{groupWithThings.category}}</div>
+		<a ng-repeat="thing in groupWithThings.things" class="item" ng-href="#/tab/thing-detail/edit/{{thing.indexId}}">
+			<div>
+				<h2 class="black assertive">{{thing.title}}</h2>
+				<p>
+					<span ng-show="thing.leftNumber">有{{thing.leftNumber}}</span><span ng-show="thing.leftUnit">{{thing.leftUnit}}</span>
+				</p>
+			</div>
+			<span ng-show="thing.isIdle" class="badge badge-positive">闲置</span>
+		</a>
+	</ion-list> -->
+
+	<ion-list>
+		<a ng-repeat="thing in categoryThings|orderBy:'isIdle'" class="item" ng-href="#/tab/thing-detail/{{thing.categoryId}}/{{thing.thingId}}">
+			<!--<i class="icon"><span ng-show="thing.isIdle">闲</span></i>-->
+            <!--<img ng-src="img/item_icons/good1.png">-->
+            <div>
+				<h2 ng-show="thing.isIdle" class="dark title">
+                    <s>[闲置] {{thing.title}}</s>
+                </h2>
+                <h2 ng-show="!thing.isIdle" class="royal title">
+                    {{thing.title}}
+                </h2>
+                <p>存放在 {{thing.place}}</p>
+			</div>
+            <span ng-show="thing.isIdle" class="badge badge-dark">{{thing.leftNumber}}{{thing.leftUnit}}</span>
+            <span ng-show="!thing.isIdle" class="badge badge-assertive">{{thing.leftNumber}}{{thing.leftUnit}}</span>
+		</a>
+	</ion-list>
+
+</ion-content>
+
+</ion-view>

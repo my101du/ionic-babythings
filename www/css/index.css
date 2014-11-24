@@ -1,0 +1,127 @@
+html{
+    background-color: #23417F;
+}
+body {
+    background-color:#E4E4E4;
+    font: 1rem/1.5 normal 'Droid Sans Fallback',sans-serif;    
+    margin:0px;
+    padding:0px;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+}
+@-webkit-keyframes loading{
+    from{
+        background: #27487F;
+    }
+    to{
+        background: #2E5CA9;
+    }
+
+}
+.ios7{
+    top: 20px;
+}
+.loading{
+    position: fixed;
+    background: #27487F;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    -webkit-animation:loading 2s ease-out 0s infinite alternate;
+    text-align: center;
+    padding: 0;
+    margin: 0;
+}
+.loading span{
+    display: block;
+    margin: 61.8% auto 0 auto;
+    height: 20px;
+    font-size: 1em;
+    color: #FFF;
+    border-radius:10px;
+    width: 200px;
+    background: #5F718E;
+    line-height: 20px;
+}
+
+header{
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    height: 50px;
+    background: #23417F;
+    width: 100%;
+    color: #FFF;
+    text-align: center;
+    font-size: 1.5em;
+    line-height: 50px;
+}
+article{
+    position: fixed;
+    top: 60px;
+    left: 10px;
+    right: 10px;
+    bottom: 50px;
+    overflow: auto;
+
+}
+article table{
+    width: 100%;
+}
+article table tr td{
+    padding: 5px;
+    border: 1px solid #CCC;
+}
+article button{
+    font-size: 1.2em;
+    padding: 5px 10px;
+    display: block;
+    margin: 20px; 
+}
+article code{
+    display: inline;
+    padding: 0px 5px;
+    color: #F00;
+}
+article pre{
+    margin: 0;
+    word-wrap: break-word;
+}
+article pre code{
+    color: #23417F;
+    display: block;
+    padding: 10px;
+    background: #CCC;
+    border:1px solid #ABABAB;
+    max-width: 100%;
+    overflow: hidden;
+    word-wrap: break-word;
+}
+p.intro{
+    text-indent: 20px;
+}
+nav {
+    position: fixed;
+    bottom: 0;
+    height: 40px;
+    left: 0px;
+    width: 100%;
+    background: #333;
+}
+nav a{
+    font-size: 1.2em;
+    color: #FFF;
+    text-decoration: none;
+    line-height: 40px;
+    display: block;
+    float: left;
+    padding: 0 15px;
+    overflow: auto; 
+}
+nav a.active{
+    background: #666;
+}

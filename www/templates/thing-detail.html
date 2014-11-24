@@ -1,0 +1,79 @@
+<ion-view title="{{title}}">
+
+<ion-nav-buttons side="right">
+	<a class="button button-clear" ng-click="saveThing()"> 保存 </a>
+</ion-nav-buttons>
+
+<ion-content has-header="true"><!-- padding="true" -->
+
+	<div class="list">
+		<label class="item item-input">
+			<div class="input-label positive"> 名称 </div>
+			<input type="text" ng-model="thing.title">
+		</label>
+
+		<!-- 暂不分开 -->
+		<!-- <label class="item item-input item-select">
+			<div class="input-label"> 属于宝宝 </div>
+			<select>
+				<option ng-repeat="type in types">张梓涵</option>
+			</select>
+		</label> -->
+
+		<label class="item item-input item-select">
+			<div class="input-label positive"> 类别 </div>
+			<select ng-model="thing.categoryId" ng-options="category.id as category.title for category in categories"></select>
+            <!--ng-init="thing.categoryId = categories[0].id" -->
+		</label>
+
+		<div class="item item-toggle">
+			<span class="positive">是否闲置</span>
+			<label class="toggle toggle-positive">
+				<input type="checkbox" ng-model="thing.isIdle">
+				<div class="track">
+					<div class="handle"></div>
+				</div>
+			</label>
+		</div>
+
+        <label class="item item-input">
+            <span class="input-label positive">存放在哪里</span>
+            <input type="text" ng-model="thing.place">
+        </label>
+
+		<div class="item item-divider">共有</div>
+		<label class="item item-input">
+			<span class="input-label positive">数量</span>
+			<input type="number" pattern="[0-9]+" ng-model="thing.leftNumber">
+		</label>
+
+
+		<label class="item item-input">
+			<span class="input-label positive">单位</span>
+			<input type="text" placeholder="例如 片/包/罐 等" ng-model="thing.leftUnit">
+		</label>
+
+        <div class="item item-divider">
+            图片(点击可直接修改)
+        </div>
+
+        <div class="item">
+            <img id="thingPic" style="width:100%" src="{{thing.pic}}" ng-click="addPhotoFromLibrary()">
+        </div>
+
+		<div class="item item-divider">详细说明</div>
+		<div class="padding">
+			<textarea placeholder="使用说明 注意事项等" rows="5" ng-model="thing.description"></textarea>
+		</div>
+
+		<!-- <div class="item item-divider">照片</div>
+		<div class="item">照片列表</div> -->
+		
+		<div class="padding">
+			<button class="button button-block button-assertive" ng-show="DelButtonShow" ng-click="delThingAtIndex({{thingIndex}})"> 删除 </button>
+			<button class="hide button button-block button-stable" ng-show="SellButtonShow" ng-if="thing.isIdle"> 转让闲置物品 </button>
+		</div>
+	</div>
+
+</ion-content>
+</ion-view>

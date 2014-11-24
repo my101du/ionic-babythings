@@ -1,0 +1,40 @@
+<ion-view title="{{title}}">
+
+<ion-nav-buttons side="right">
+	<a class="button button-clear" ng-click="saveRecord()"> 保存 </a>
+</ion-nav-buttons>
+
+<ion-content has-header="true"><!-- padding="true" -->
+	
+	<div class="list">
+
+		<label class="item item-input">
+			<div class="input-label positive"> 购买日期 </div>
+			<input type="date" ng-model="record.date">
+		</label>
+
+		<label class="item item-input">
+			<div class="input-label positive"> 购买于 </div>
+			<input type="text" placeholder="母婴店/网上商城" ng-model="record.address">
+		</label>
+
+		<label class="item item-input">
+			<span class="input-label positive">物品清单</span>
+			<textarea placeholder="" rows="5" ng-model="record.content"></textarea>
+		</label>
+
+        <label class="item item-input">
+            <div class="input-label positive"> 共花费 </div>
+            <input type="text" ng-model="record.price">
+        </label>
+
+		<!-- <div class="item item-divider">照片</div>
+		<div class="item">照片列表</div> -->
+		
+		<div class="padding">
+			<button class="button button-block button-assertive" ng-show="DelButtonShow" ng-click="delRecord({{recordId}})"> 删除 </button>
+		</div>
+	</div>
+
+</ion-content>
+</ion-view>

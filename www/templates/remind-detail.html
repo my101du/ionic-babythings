@@ -1,0 +1,33 @@
+<ion-view title="{{title}}">
+
+    <ion-nav-buttons side="right">
+        <a class="button button-clear" ng-click="saveRemind()"> 保存 </a>
+    </ion-nav-buttons>
+
+    <ion-content has-header="true"><!-- padding="true" -->
+
+        <div class="list">
+
+            <label class="item item-input">
+                <div class="input-label positive"> 时间 </div>
+                <input type="datetime-local" ng-model="remind.time">
+            </label>
+
+            <label class="item item-input">
+                <div class="input-label positive"> 标题 </div>
+                <input type="text" ng-model="remind.title">
+            </label>
+
+
+            <label class="item item-input">
+                <span class="input-label positive">详细内容</span>
+                <textarea placeholder="" rows="5" ng-model="remind.content"></textarea>
+            </label>
+
+            <div class="padding">
+                <button class="button button-block button-assertive" ng-show="DelButtonShow" ng-click="delRemind({{remindIndex}})"> 删除 </button>
+            </div>
+        </div>
+
+    </ion-content>
+</ion-view>

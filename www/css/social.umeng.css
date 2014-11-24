@@ -1,0 +1,289 @@
+.c{
+    clear: both;
+    width: 0px;
+    height: 0px;
+}
+@keyframes showCover {
+  from { background:RGBA(50,50,50,0); }
+  to{ background:RGBA(50,50,50,0.1);}
+}
+@-webkit-keyframes showCover {
+  from { background:RGBA(50,50,50,0); }
+  to{ background:RGBA(50,50,50,0.1);}
+}
+@keyframes closeCover {
+  from { background:RGBA(50,50,50,0.1); }
+  to{ background:RGBA(50,50,50,0);}
+}
+@-webkit-keyframes closeCover {
+  from { background:RGBA(50,50,50,0.1); }
+  to{ background:RGBA(50,50,50,0);}
+}
+.cover{
+    background:RGBA(50,50,50,0.1);
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    width: 100%;
+    height: 100%;
+    z-index: 100; 
+    animation:showCover .5s steps(8,end) 1;
+    -webkit-animation:showCover .5s steps(8,end) 1;
+}
+.cover.remove{
+    opacity: 0;
+    animation:closeCover.5s steps(8,end) 1;
+    -webkit-animation:closeCover.5s steps(8,end) 1;
+}
+@keyframes showShareList {
+  from { bottom: -50%; }
+  to{ bottom: 0;}
+}
+@-webkit-keyframes showShareList {
+  from { bottom: -50%; }
+  to{ bottom: 0;}
+}
+@keyframes closeShareList {
+  from { bottom: 0%; }
+  to{ bottom: -50%;}
+}
+@-webkit-keyframes closeShareList {
+  from { bottom: 0%; }
+  to{ bottom: -50%;}
+}
+ul.shareList{
+    display: block;
+    bottom: 0;
+    left: 0px;
+    position: fixed;
+    overflow: auto;
+    padding: 0px;
+    margin:0px; 
+    z-index: 110;
+    background: #EEEEEE;
+    animation:showShareList.5s steps(8,end) 1;
+    -webkit-animation:showShareList.5s steps(8,end) 1;
+}
+ul.shareList.remove{
+    bottom:-50%;
+    animation:closeShareList.5s steps(8,end) 1;
+    -webkit-animation:closeShareList.5s steps(8,end) 1;
+}
+
+ul.shareList li.shareList_item{
+    border: 1px solid #EFEFEF;
+    border-width: 0px 1px 1px 0px;
+    background:#FFF;  
+    list-style: none;
+    display:block;
+    padding: 0px;
+    margin:0px; 
+    float: left;
+    position: relative;
+    cursor: pointer;
+}
+ul.shareList li.shareList_item span{
+    position: absolute;
+    bottom: 5%;
+    font-size: 0.75em;
+    width: 100%;
+    text-align: center;
+    color: #888;
+    left: 0px;
+}
+ul.shareList li.shareList_item_sina{
+    background:url('../img/social.umeng/umeng_socialize_sina_on.png') no-repeat #FFF center center;
+    background-size: 60%;
+}
+ul.shareList li.shareList_item_tencent{
+    background:url('../img/social.umeng/umeng_socialize_tx_on.png') no-repeat #FFF center center;
+    background-size: 60%;
+}
+ul.shareList li.shareList_item_wx_session{
+    background:url('../img/social.umeng/umeng_socialize_wechat.png') no-repeat #FFF center center;
+    background-size: 60%;
+}
+ul.shareList li.shareList_item_wx_timeline{
+    background:url('../img/social.umeng/umeng_socialize_wxcircle.png') no-repeat #FFF center center;
+    background-size: 60%;
+}
+ul.shareList li.shareList_item_qzone{
+    background:url('../img/social.umeng/umeng_socialize_qzone_on.png') no-repeat #FFF center center;
+    background-size: 60%;
+}
+ul.shareList li.shareList_item_renren{
+    background:url('../img/social.umeng/umeng_socialize_renren_on.png') no-repeat #FFF center center;
+    background-size: 60%;
+}
+ul.shareList li.shareList_item_qq{
+    background:url('../img/social.umeng/umeng_socialize_qq_on.png') no-repeat #FFF center center;
+    background-size: 60%;
+}
+ul.shareList li.shareList_item_facebook{
+    background:url('../img/social.umeng/umeng_socialize_facebook.png') no-repeat #FFF center center;
+    background-size: 60%;
+}
+ul.shareList li.shareList_item_twitter{
+    background:url('../img/social.umeng/umeng_socialize_twitter.png') no-repeat #FFF center center;
+    background-size: 60%;
+}
+ul.shareList li.shareList_item_sms{
+    background:url('../img/social.umeng/umeng_socialize_sms.png') no-repeat #FFF center center;
+    background-size: 60%;
+}
+ul.shareList li.shareList_item_email{
+    background:url('../img/social.umeng/umeng_socialize_gmail.png') no-repeat #FFF center center;
+    background-size: 60%;
+}
+ul.shareList li.shareList_item_douban{
+    background:url('../img/social.umeng/umeng_socialize_douban_on.png') no-repeat #FFF center center;
+    background-size: 60%;
+}
+ul.shareList li.shareList_item:focus{
+    background-color:#E3EDFC;
+}
+.sharePage{
+    z-index: 1000;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    background: #FFFFFF;
+    box-shadow: 2px 3px 5px rgba(0,0,0,1);
+    background: #FFF;
+}
+
+.sharePage .sharePageTitle{
+    position: fixed;
+    top: 0;
+    width: 100%;
+    left: 0;
+    height: 40px;
+    line-height: 40px;
+    background: #EFF2F8;
+    border-bottom: 1px solid #DDD;
+    text-align: center;
+}
+
+.sharePage .sharePageTitle span{
+    font-size: 1.3em;
+}
+.icon-back, .icon-submit {
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    display: inline-block;
+}
+.icon-back{
+    background: url('../img/social.umeng/back.png') no-repeat center center;
+    background-size: 60%;
+}
+.icon-submit{
+    background: url('../img/social.umeng/send.png') no-repeat center center;
+    background-size: 60%;
+}
+.icon-submit.disabled{
+    background: url('../img/social.umeng/send_disabled.png') no-repeat center center;
+    background-size: 60%;
+}
+.icon-back:focus, .icon-submit:focus {
+    background-color: #E4EFFB;
+}
+
+.sharePage .sharePageTitle .sharePageBack{
+    position: absolute;
+    left: 0px;
+    top: 0px;
+}
+.sharePage .sharePageTitle .sharePageSubmit{
+    position: absolute;
+    right: 0px;
+    top: 0px;
+}
+.sharePage .sharePageContent {
+    position: fixed;
+    display: block;
+    top: 50px;
+    bottom: 110px;
+    left: 10px;
+    right: 10px;
+    background: #FFF;
+    border:none;
+    position: fixed;
+    font-size: 1em;
+}
+.sharePage .sharePageBottom{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    left: 0;
+    height: 40px;
+    line-height: 40px;
+    background: #EFF2F8;
+    border-top: 1px solid #DDD;
+}
+
+.sharePage .sharePageBottom .shareBottomBtn{ 
+    width: 30px;
+    height: 30px;
+    background: #FF0;
+    border-radius: 5px;
+    position: relative;
+    display: block;
+    float: left;
+    margin: 5px 10px; 
+}
+.shareGeo{
+    position: absolute;
+    top: -30px;
+    left: 10px;
+    font-size: 1em;
+    height: 20px;
+    border: 1px solid #CCC;
+    border-radius: 15px;
+    line-height: 20px;
+    text-overflow:ellipsis; 
+    overflow:hidden; 
+    white-space:nowrap;
+    width: 150px;
+    color: #666;
+    text-align: center;
+}
+.shareImg{
+    position: absolute;
+    bottom: 50px;
+    right: 10px;
+    max-height: 70px;
+    max-width: 70px;
+    display: none;
+}
+.umTip{
+    position: fixed;
+    bottom: 50px;
+    left: 0px;
+    width: 100%;
+    text-align: center;
+    display: none;
+    z-index: 10000;
+}
+.umTip span{
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 0.75em;
+    background: RGBA(0,0,0,0.8);
+    color: #FFF;
+}
+video {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+}

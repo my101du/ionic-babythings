@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <meta id="viewport" name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">
+        <meta name="format-detection" content="telephone=no" />
+        <link rel="stylesheet" type="text/css" href="css/social.umeng.css" />
+        <link rel="stylesheet" type="text/css" href="css/index.css" />
+        <title>友盟分享组件</title>
+    </head>
+    <body>
+        <!--<div class="loading">
+            <span>loading...</span>
+        </div>-->
+        <header>
+            友盟分享组件
+        </header>
+        <article id="index">
+        <p class="intro">
+          欢迎使用友盟分享组件（Phonegap）。友盟分享组件，可以让移动应用快速具备社会化分享等功能，并提供实时、全面的社会化数据统计分析服务。
+        </p>
+        <p class="intro">
+          本插件完全由JS完成。只依赖jquery和部分phonegap插件。不依赖操作系统,你可以将它用于任何基于Phonegap的Android/iOS/WP8系统的App。
+        </p>
+        <p class="intro">
+          这个APP将会手把手教你使用社会化组件SDK，为你的APP增加新浪微博、腾讯微博、QQ空间等社会化平台的分享功能。
+        </p>
+        <h2>准备工作</h2>
+        <p>
+               <strong>依赖</strong>
+               <pre>
+   jQuery 2.0
+               </pre>
+
+               <strong>Phonegap版本</strong>
+                 <pre> 
+   v3.1.0
+                 </pre>
+               <strong>需要的Phonegap系统插件</strong>
+                 <pre> 
+                 <code>
+   'org.apache.cordova.device'
+   'org.apache.cordova.file'
+   'org.apache.cordova.file-transfer'
+   'org.apache.cordova.geolocation'
+   'org.apache.cordova.inappbrowser'
+   'org.apache.cordova.network-information'
+                </code>
+                 </pre>
+               <strong>联系我</strong>
+               <pre>
+
+   <a href="mailto:jixin@umeng.com">jixin@umeng.com</a>
+
+               </pre>
+        </p>
+       </article>
+        <article id="login">
+            <h2>1.登录</h2>
+            <h3>1.1 login</h3>
+            <p>
+                   <strong>作用</strong>
+                   <pre>调用login接口可以直接授权登录各平台.</pre>
+            </p>
+            <p>
+              <strong>使用</strong>
+             <pre><code>$.fn.umshare.login(plat,callback);</code></pre>
+                  
+            </p>
+            <p>
+                   <strong>参数</strong>
+                 <table>
+                        <tr>
+                               <td>plat</td>
+                               <td>平台名.('sina',&nbsp;'tencent',&nbsp;'qzone',&nbsp;'renren',&nbsp;'douban')</td>
+                        </tr>
+                        <tr>
+                               <td>callback</td>
+                               <td>回调.(function(e){};e为用户信息,<code>{'token':'平台返回的token',&nbsp;'uid':'平台返回的uid'}</code>)</td>
+
+                        </tr>
+                 </table> 
+            </p>
+            <p>
+                   <strong>示例</strong>
+                   <button id="loginBtn">登录新浪</button>
+                   <div id="loginInfo"></div>
+            </p>
+            <pre><code>
+$("#loginBtn").click(function(){
+         $("#loginInfo").html('');
+     $.fn.umshare.login('sina',function(user){
+         $.fn.umshare.tip('登录成功,token:' + user.token + ', uid:' + user.uid);
+         $("#loginInfo").html('登录成功,token:' + user.token + ', uid:' + user.uid);
+     });
+ });
+            </code></pre>
+            <hr />
+            <h3>1.2 getToken</h3>
+            <p>
+                   <strong>作用</strong>
+                   <pre>获取某个平台的登录信息.</pre>
+            </p>
+            <p>
+              <strong>使用</strong>
+             <pre><code>$.fn.umshare.getToken(plat);</code></pre>
+                  
+            </p>
+            <p>
+                   <strong>参数</strong>
+                 <table>
+                        <tr>
+                               <td>plat</td>
+                               <td>平台名.('sina',&nbsp;'tencent',&nbsp;'qzone',&nbsp;'renren',&nbsp;'douban')</td>
+                        </tr>
+                 </table> 
+            </p>
+            <p>
+                   <strong>返回结果</strong>
+             <pre><code>{'token':'平台返回的token','uid':'平台返回的uid'}</code></pre>
+            </p>
+            <p>
+                   <strong>示例</strong>
+                   <button id="getTokenBtn">获取新浪的登录信息</button>
+                   <div id="getTokenInfo"></div>
+            </p>
+            <pre><code>
+ $("#getTokenBtn").click(function(){
+        var info = $.fn.umshare.getToken("sina");
+        $("#getTokenInfo").html( info ? 'token:' + info.token + ', uid:' + info.uid : 'false');
+ });
+            </code></pre>
+            <hr />
+            <h3>1.3 checkToken</h3>
+            <p>
+                   <strong>作用</strong>
+                   <pre>检查某个平台的登录信息.如果未登录，则进行登录(等价于先使用getoken进行检测，若返回false，则调用login)</pre>
+            </p>
+            <p>
+              <strong>使用</strong>
+             <pre><code>$.fn.umshare.checkToken(plat,callback);</code></pre>
+                  
+            </p>
+            <p>
+                   <strong>参数</strong>
+                 <table>
+                        <tr>
+                               <td>plat</td>
+                               <td>平台名.('sina',&nbsp;'tencent',&nbsp;'qzone',&nbsp;'renren',&nbsp;'douban')</td>
+                        </tr>
+                        <tr>
+                               <td>callback</td>
+                               <td>回调.(function(e){};e为用户信息,<code>{'token':'平台返回的token','uid':'平台返回的uid'}</code>)</td>
+
+                        </tr>
+                 </table> 
+            </p>
+            <p>
+                   <strong>示例</strong>
+                   <button id="checkTokenBtn">登录新浪</button>
+                   <div id="checkTokenInfo"></div>
+            </p>
+            <pre><code>
+ $("#checkTokenBtn").click(function(){
+     $("#checkTokenInfo").html('');
+     $.fn.umshare.checkToken('sina',function(user){
+         $.fn.umshare.tip('登录成功,token:' + user.token + ', uid:' + user.uid);
+         $("#checkTokenInfo").html('登录成功,token:' + user.token + ', uid:' + user.uid);
+     });
+ });
+            </code></pre>
+            <hr />
+            <h3>1.4 delToken</h3>
+            <p>
+                   <strong>作用</strong>
+                   <pre>清除某个平台的登录信息.</pre>
+            </p>
+            <p>
+              <strong>使用</strong>
+             <pre><code>$.fn.umshare.delToken(plat);</code></pre>
+                  
+            </p>
+            <p>
+                   <strong>参数</strong>
+                 <table>
+                        <tr>
+                               <td>plat</td>
+                               <td>平台名.('sina',&nbsp;'tencent',&nbsp;'qzone',&nbsp;'renren',&nbsp;'douban')</td>
+                        </tr>
+                 </table> 
+            </p>
+            <p>
+                   <strong>返回结果</strong>
+            </p>
+              无
+            <p>
+                   <strong>示例</strong>
+                   <button id="delTokenBtn">退出新浪</button>
+                   <div id="delTokenInfo"></div>
+            </p>
+            <pre><code>
+        $("#delTokenBtn").click(function(){
+               var info = $.fn.umshare.delToken("sina");
+               $("#delTokenInfo").html('退出成功');
+        });
+            </code></pre>
+        </article> 
+        <article id="share">
+            <h2>2.分享</h2>
+            <h3>2.1 调用分享平台选择面板</h3>
+            <p>
+                   <strong>作用</strong>
+                   <pre>调用分享平台选择面板,选择平台后进行分享(假如未登录，会先进行登录操作)</pre>
+            </p>
+            <p>
+              <strong>使用</strong>
+             <pre><code>
+var opt = {
+       'data' : {
+              'content' : {
+                     'text' : '', //要分享的文字
+              }
+       } 
+}
+$("#btn").umshare(opt);
+             </code></pre>
+                  
+            </p>
+            <p>
+                   <strong>参数</strong>
+                   <pre>
+<code>
+var opt = {
+       'data' : {
+              'content' : {
+                     'text' : '', //要分享的文字
+                     'furl' : '', //在线图片URL
+                     'img' : '' //本地图片地址
+              },
+       },    
+       'topic': {  //主题，用于数据统计，非必须
+             'dc': 'default',  //主题描述
+             'name':'default', //主题名称   
+             'ni':1            //是否为新主题(1:是,0:否)
+       }   
+}
+</code>
+                   </pre>
+
+
+            </p>
+            <p>
+                   <strong>示例</strong>
+                   <button id="shareBtn">分享</button>
+            </p>
+            <pre><code>
+var opt = {
+       'data' : {
+              'content' : {
+                     'text' : '友盟分享组件帮您接入和升级微博、微信等社交平台，快速武装您的应用！',
+                     'img' : 'img/share.png'
+              }
+       } 
+}
+$("#shareBtn").umshare(opt);
+
+            </code></pre>
+            <hr />
+
+            <h3>2.2 分享到某个平台</h3>
+            <p>
+                   <strong>作用</strong>
+                   <pre>不调用分享平台选择面板,直接分享到指定平台(假如未登录，会先进行登录操作)</pre>
+            </p>
+            <p>
+              <strong>使用</strong>
+             <pre><code>
+var opt = {
+    'data' : {
+       'content' : {
+              'text' : '', //要分享的文字
+       }
+    }
+}
+$.fn.umshare.share(plat,opt);
+             </code></pre>
+                  
+            </p>
+            <p>
+                   <strong>参数</strong>
+                   <pre>
+<code>
+var plat;    //平台名
+var opt = {
+    'data':{
+       'content' : {
+              'text' : '', //要分享的文字
+              'furl' : '', //在线图片URL
+              'img' : '' //本地图片地址
+       }
+    },
+   'topic': {  //主题，用于数据统计，非必须
+         'dc': 'default',  //主题描述
+         'name':'default', //主题名称   
+         'ni':1            //是否为新主题(1:是,0:否)
+   }   
+}
+</code>
+                   </pre>
+
+
+            </p>
+            <p>
+                   <strong>示例</strong>
+                   <button id="shareToSinaBtn">分享到新浪</button>
+            </p>
+            <pre><code>
+ var opt = {
+    'data' : {
+       'content' : {
+              'text' : '友盟分享组件帮您接入和升级微博、微信等社交平台，快速武装您的应用！马上分享到新浪微博！',
+              'img' : 'img/share.png'
+       }
+    }
+ }
+ $("#shareToSinaBtn").click(function(){
+        $.fn.umshare.share('sina',opt);
+ });
+            </code></pre>
+            <hr />
+            <h3>2.2 直接分享（无界面）</h3>
+            <p>
+                   <strong>作用</strong>
+                   <pre>直接分享到指定平台,无内容编辑界面(假如未登录，会先进行登录操作)</pre>
+            </p>
+            <p>
+              <strong>使用</strong>
+             <pre><code>
+  var opt = {
+         'data' : {
+                'content' : {
+                       'text' : '', //要分享的文字
+                }
+         } 
+  }
+  $.fn.umshare.shareSubmit('sina',opt);
+             </code></pre>
+                  
+            </p>
+            <p>
+                   <strong>参数</strong>
+                   <pre>
+<code>
+var plat;    //平台名
+var opt = {
+    'data':{
+       'content' : {
+              'text' : '', //要分享的文字
+              'furl' : '', //在线图片URL
+              'img' : '' //本地图片地址
+       }
+    },
+   'topic': {  //主题，用于数据统计，非必须
+         'dc': 'default',  //主题描述
+         'name':'default', //主题名称   
+         'ni':1            //是否为新主题(1:是,0:否)
+   }   
+}
+</code>
+                   </pre>
+
+
+            </p>
+            <p>
+                   <strong>示例</strong>
+                   <button id="shareSubmitSinaBtn">分享到新浪（无界面）</button>
+            </p>
+            <pre><code>
+ var opt = {
+    'data' : {
+       'content' : {
+              'text' : '友盟分享组件帮您接入和升级微博、微信等社交平台，快速武装您的应用！马上分享到新浪微博！',
+              'img' : 'img/share.png'
+       }
+    }
+ }
+ $("#shareSubmitSinaBtn").click(function(){
+        $.fn.umshare.shareSubmit('sina',opt);
+ });
+            </code></pre>
+            <hr />
+
+        </article>   
+        <article id="shake">
+            <h2>2.摇一摇</h2>
+            <h3>2.1 摇一摇</h3>
+            <p>
+                   <strong>作用</strong>
+                   <pre>截屏</pre>
+            </p>
+            <p>
+              <strong>使用</strong>
+             <pre><code>
+               $.fn.umshare.shake();
+             </code></pre>
+                  
+            </p>
+            <p>
+                   <strong>参数</strong>
+                   <pre>
+<code>
+  callback : 回调.function(url){}  //url为图片保存在本地的地址
+</code>
+                   </pre>
+
+
+            </p>
+            <p>
+                   <strong>示例</strong>
+                   <button id="shakeBtn">开始摇一摇</button>
+            </p>
+            <pre><code id="accelerometer">
+  //shake
+  $("#shakeBtn").click(function(){
+    var shake = function(){
+      var params = {};
+      $.fn.umshare.shake(params,function(){
+        $.fn.umshare.screenshot(function(url){
+              var opt = {
+                     'data' : {
+                            'content' : {
+                                   'text' : '友盟分享组件帮您接入和升级微博、微信等社交平台，快速武装您的应用！',
+                                   'img' : url
+                            }
+                     },
+                     'callback' : function(){
+                        shake();
+                     } 
+              }
+             $.fn.umshare.share('sina',opt);
+        });
+      });
+    }
+    shake();
+  });
+            </code></pre>
+            <hr />            
+            <h3>2.2 截屏</h3>
+            <p>
+                   <strong>作用</strong>
+                   <pre>截屏</pre>
+            </p>
+            <p>
+              <strong>使用</strong>
+             <pre><code>
+               $.fn.umshare.screenshot();
+             </code></pre>
+                  
+            </p>
+            <p>
+                   <strong>参数</strong>
+                   <pre>
+<code>
+  callback : 回调.function(url){}  //url为图片保存在本地的地址
+</code>
+                   </pre>
+
+
+            </p>
+            <p>
+                   <strong>示例</strong>
+                   <button id="screenshotBtn">截屏并分享</button>
+            </p>
+            <pre><code>
+  $("#screenshotBtn").click(function(){
+    $.fn.umshare.screenshot(function(url){
+          var opt = {
+              'data' : {
+                'content' : {
+                       'text' : '友盟分享组件帮您接入和升级微博、微信等社交平台，快速武装您的应用！',
+                       'img' : url
+                }
+              }
+          }
+         $.fn.umshare.share('sina',opt);
+    });
+  });            
+            </code></pre>
+            <hr />
+        </article>
+       <nav>
+         <a to="index" class="active">首页</a>
+         <a to="login">登录</a>
+         <a to="share">分享</a>
+         <a to="shake">摇一摇</a>
+       </nav>
+       <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="js/jquery.js"></script>
+        <script type="text/javascript" src="js/html2canvas.js"></script>
+        <script type="text/javascript" src="js/social.umeng.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+        <script type="text/javascript">
+        $("article#index").show().siblings("article").hide();
+        $("nav a").click(function(){
+          var to = $(this).attr("to");
+          $(this).addClass("active").siblings("a").removeClass("active");
+          $("article#"+to).show().siblings("article").hide();
+        });
+            app.initialize();
+            //app.receivedEvent();
+        </script>
+    </body>
+</html>

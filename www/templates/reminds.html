@@ -1,0 +1,32 @@
+<ion-view title="提醒">
+
+    <ion-nav-buttons side="left">
+        <a class="button button-clear" ng-click="clearExpired()"> 清空过期 </a>
+    </ion-nav-buttons>
+
+    <ion-nav-buttons side="right">
+        <a class="button button-clear" ng-click="addRemind()"> 添加 </a>
+    </ion-nav-buttons>
+
+    <ion-content>
+
+        <div class="list">
+
+            <a class="item item-icon-right" ng-repeat="remind in reminds|orderBy:'notExpired'" ng-href="#/tab/remind-detail/{{remind.remindId}}">
+
+                <div>
+
+
+                    <h2 ng-show="remind.notExpired" class="royal title">{{remind.time | date:'yyyy年MM月dd日 HH:mm'}}</h2>
+                    <p ng-show="remind.notExpired">{{remind.title}}</p>
+
+                    <h2 ng-show="!remind.notExpired" class="dark title"><s>[过期]{{remind.time | date:'yyyy年MM月dd日 HH:mm'}}</s></h2>
+                    <p ng-show="!remind.notExpired">{{remind.title}}</p>
+                </div>
+
+                <i class="icon assertive ion-ios7-bell-outline"></i>
+            </a>
+        </div>
+
+    </ion-content>
+</ion-view>

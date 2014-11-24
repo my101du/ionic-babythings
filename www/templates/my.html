@@ -1,0 +1,63 @@
+<ion-view title="我的">
+    <ion-content class="no-padding">
+        <div class="list">
+            <div class="item item-divider">帐号</div>
+
+            <div class="item item-icon-left item-button-right" ng-show="isLogin">
+                <i class="icon ion-ios7-person"></i>
+                已登录
+                <button class="button button-assertive" ng-click="logout()">退出</button>
+            </div>
+            <div class="item item-icon-left item-button-right" ng-show="!isLogin">
+                <i class="icon ion-ios7-person"></i>
+                暂未登录
+                <button class="button button-positive" ng-click="checkLogin()">使用QQ帐号登录</button>
+            </div>
+
+            <div class="item item-divider">功能（需要登录）</div>
+            <div class="item">
+                上次备份：{{lastUploadTime}}
+            </div>
+            <div class="item item-icon-left item-button-right">
+                <i class="icon ion-ios7-cloud-upload-outline"></i>
+                数据备份到云端
+                <button class="button button-balanced" ng-click="uploadData()">备份</button>
+            </div>
+            <div class="item item-icon-left item-button-right">
+                <i class="icon ion-ios7-cloud-download-outline"></i>
+                从云端还原数据
+                <button class="button button-assertive" ng-click="downloadData()">还原</button>
+            </div>
+
+            <div class="item item-divider">其他</div>
+            <div class="item item-icon-left" ng-click="feedback()">
+                <i class="icon ion-ios7-email-outline"></i>
+                意见反馈 <span class="balanced">{{feedbackResult}}</span>
+            </div>
+            <div id="btnShare" class="item item-icon-left">
+                <i class="icon ion-ios7-paperplane-outline"></i>
+                分享给好友
+            </div>
+            <div class="item item-icon-left" ng-click="logout()">
+                <i class="icon ion-ios7-people-outline"></i>
+                QQ群 346639932
+            </div>
+
+            <div class="item item-icon-left" ng-click="aboutUs()">
+                <i class="icon ion-ios7-information-outline"></i>
+                关于
+            </div>
+
+            <!--<div class="item item-divider">推荐应用</div>-->
+
+            <!--<div class="item item-divider">开发模式</div>-->
+            <!--<div class="item" ng-click="delData('things')">删除所有物品数据</div>-->
+            <!--<div class="item" ng-click="delData('records')">删除所有记账数据</div>-->
+            <!--<div class="item" ng-click="delData('reminds')">删除所有提醒数据</div>-->
+            <!--<div class="item" ng-click="delData('all')">删除所有数据</div>-->
+            <!--<div class="item" ng-click="testNotification()">10秒测试通知</div>-->
+            <!--<div class="item" ng-click="getNotifications()">查看当前有通知的提醒</div>-->
+            <!--<div class="item" ng-click="delData('notifications')">删除所有提醒通知</div>-->
+        </div>
+    </ion-content>
+</ion-view>

@@ -1,0 +1,19 @@
+<ion-view title="物品管理">
+
+<ion-nav-buttons side="right">
+
+</ion-nav-buttons>
+
+<ion-content>
+
+	<ion-list class="">
+		<a ng-repeat="category in categories" class="item item-avatar-left" ng-href="#/tab/things/{{category.id}}">
+			<img ng-src="img/category_icons/{{category.icon}}.jpg">
+			<h2 class="royal title">{{category.title}}</h2>
+			<p>共有 <span class="assertive">{{category.totalNumber}}</span>   闲置 <span class="assertive">{{category.idleNumber}}</span> </p>
+		</a>
+	</ion-list>
+
+</ion-content>
+
+</ion-view>

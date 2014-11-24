@@ -1,0 +1,24 @@
+<ion-view title="记账">
+
+<ion-nav-buttons side="left">
+	<a class="button button-clear" ng-click="recordCount()"> 统计 </a>
+</ion-nav-buttons>
+<ion-nav-buttons side="right">
+	<a class="button button-clear" ng-click="addRecord()"> 添加 </a>
+</ion-nav-buttons>
+
+<ion-content>
+
+	<div class="list">
+
+		<a class="item row" ng-repeat="record in records" ng-href="#/tab/record-detail/{{$index}}">
+			<span class="col">
+				<h2 class="royal title">{{record.content | limitTo:14}}...</h2>
+				<p>{{record.date|date:'yyyy年MM月dd日'}} 购于{{record.address}}</p>
+			</span>
+			<span class="badge badge-assertive">共{{record.price}}元</span>
+		</a>
+	</div>
+
+</ion-content>
+</ion-view>

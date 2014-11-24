@@ -1,0 +1,11 @@
+* {
+    /*text-shadow: 0px 0px;*/
+}
+
+h2.title {
+    font-size: 110%;
+}
+
+.hide {
+    display: none;
+}
